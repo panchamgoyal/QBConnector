@@ -1,7 +1,6 @@
 package com.mixnmore.qbconnector.service;
 
 import com.mixnmore.qbconnector.types.ArrayOfString;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,13 +8,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 
-/**
- * @author Pranshu Agarwal
- */
 @WebService(endpointInterface = "com.mixnmore.qbconnector.service.QBWebConnectorSvcSoap")
 public class QBWebConnectorSvcSoapController implements QBWebConnectorSvcSoap {
 
@@ -54,7 +48,7 @@ public class QBWebConnectorSvcSoapController implements QBWebConnectorSvcSoap {
 	public String sendRequestXML(String ticket, String strHCPResponse, String strCompanyFileName, String qbXMLCountry, int qbXMLMajorVers, int qbXMLMinorVers) {
 		
 		XMLBuilderService xmlBuilder = new XMLBuilderService();
-		String requestXml = xmlBuilder.buildTermsAddXml();
+		String requestXml = xmlBuilder.buildCustomerAddXml();
 		if(!requestXml.isEmpty()) {
 			return requestXml;
 		}

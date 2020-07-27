@@ -1,0 +1,10 @@
+<ItemSalesTaxAddRq>
+	<ItemSalesTaxAdd>
+		<Name>##TAXNAME##</Name>
+		<IsActive>##ACTIVE##</IsActive>
+		<TaxRate>##TAXPERCENT##</TaxRate>
+		<TaxVendorRef>
+			<FullName>##TAXAGENCYNAME##</FullName>
+		</TaxVendorRef>
+	</ItemSalesTaxAdd>
+</ItemSalesTaxAddRq>
