@@ -1,0 +1,9 @@
+<StandardTermsAddRq>
+	<StandardTermsAdd>
+		<Name>##TERMNAME##</Name>
+		<IsActive>##ACTIVE##</IsActive>
+		<StdDueDays>##DUEDAYS##</StdDueDays>
+		<!-- <StdDiscountDays>10</StdDiscountDays> -->
+		<!-- <DiscountPct>10</DiscountPct>  -->
+	</StandardTermsAdd>
+</StandardTermsAddRq>
