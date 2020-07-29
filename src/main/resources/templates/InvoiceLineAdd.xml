@@ -1,0 +1,9 @@
+<InvoiceLineAdd>
+	<ItemRef>
+		<FullName>##ITEMNAME##</FullName>
+	</ItemRef>
+	<Desc>##ITEMDESC##</Desc>
+	<Quantity>##ITEMQTY##</Quantity>
+	<Amount>##AMOUNT##</Amount>
+	<SerialNumber>##SERIAL##</SerialNumber>
+</InvoiceLineAdd>

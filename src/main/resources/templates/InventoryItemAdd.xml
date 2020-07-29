@@ -1,0 +1,15 @@
+<ItemInventoryAddRq>
+	<ItemInventoryAdd>
+		<Name>##ITEMNAME##</Name>
+		<IsActive>##ACTIVE##</IsActive>
+		<IncomeAccountRef>
+			<FullName>##INCOMEACCOUNT##</FullName>
+		</IncomeAccountRef>
+		<AssetAccountRef>
+			<FullName>##ASSETACCOUNT##</FullName>
+		</AssetAccountRef>
+		<COGSAccountRef>
+			<FullName>##COGSACCOUNT##</FullName>
+		</COGSAccountRef>
+	</ItemInventoryAdd>
+</ItemInventoryAddRq>

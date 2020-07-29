@@ -15,6 +15,7 @@ public class QBWebConnectorSvcSoapController implements QBWebConnectorSvcSoap {
 
 	private static final Logger LOG = Logger.getLogger(QBWebConnectorSvcSoapController.class.getName());
 	private final Map<String, String> userTickets = new HashMap<>();
+	private final Map<String, Integer> ticketStages = new HashMap<>();
 
 	@Override
 	public ArrayOfString authenticate(String strUserName, String strPassword) {
@@ -31,6 +32,7 @@ public class QBWebConnectorSvcSoapController implements QBWebConnectorSvcSoap {
 
 		String ticketID = RandomStringUtils.randomAlphabetic(10);
 		userTickets.put(ticketID, strUserName);
+		ticketStages.put(ticketID, 1);
 		responseParams.add(ticketID);
 
 		// check if operations are to be performed
@@ -46,10 +48,27 @@ public class QBWebConnectorSvcSoapController implements QBWebConnectorSvcSoap {
 
 	@Override
 	public String sendRequestXML(String ticket, String strHCPResponse, String strCompanyFileName, String qbXMLCountry, int qbXMLMajorVers, int qbXMLMinorVers) {
-		
+
 		XMLBuilderService xmlBuilder = new XMLBuilderService();
-		String requestXml = xmlBuilder.buildCustomerAddXml();
-		if(!requestXml.isEmpty()) {
+		String requestXml = "";
+		switch (ticketStages.get(ticket)) {
+			case 1:
+				requestXml = xmlBuilder.buildTermsAddXml();
+				break;
+			case 2:
+				requestXml = xmlBuilder.buildTaxesAddXml();
+				break;
+			case 3:
+				requestXml = xmlBuilder.buildCustomerAddXml();
+				break;
+			case 4:
+				requestXml = xmlBuilder.buildItemsAddXml();
+				break;
+			case 5:
+				requestXml = xmlBuilder.buildInvoicesAddXml();
+				break;
+		}
+		if (!requestXml.isEmpty()) {
 			return requestXml;
 		}
 		return "";
@@ -57,7 +76,12 @@ public class QBWebConnectorSvcSoapController implements QBWebConnectorSvcSoap {
 
 	@Override
 	public int receiveResponseXML(String ticket, String response, String hresult, String message) {
-		return 100;
+		int stage = ticketStages.get(ticket);
+		ticketStages.put(ticket, stage + 1);
+		if (hresult.isEmpty()) {
+			// do error handling here
+		}
+		return (stage / 5 * 100);
 	}
 
 	@Override

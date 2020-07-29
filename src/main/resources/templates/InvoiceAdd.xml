@@ -1,9 +1,10 @@
-<CustomerAddRq>
-	<CustomerAdd>
-		<Name>##CUSTNAME##</Name>
-		<IsActive>##ACTIVE##</IsActive>
-		<FirstName>##FIRSTNAME##</FirstName>
-		<LastName>##LASTNAME##</LastName>
+<InvoiceAddRq>
+	<InvoiceAdd>
+		<CustomerRef>
+			<FullName>##CUSTNAME##</FullName>
+		</CustomerRef>
+		<TxnDate>##INVDATE##</TxnDate>
+		<RefNumber>##INVID##</RefNumber>
 		<BillAddress>
 			<Addr1>##BILLADDR1##</Addr1>
 			<Addr2>##BILLADDR2##</Addr2>
@@ -14,27 +15,18 @@
 		</BillAddress>
 		<ShipAddress>
 			<Addr1>##SHIPADDR1##</Addr1>
-			<Addr2>##SHIPADDR1##</Addr2>
-			<Addr3>##SHIPADDR1##</Addr3>
+			<Addr2>##SHIPADDR2##</Addr2>
+			<Addr3>##SHIPADDR3##</Addr3>
 			<City>##SHIPCITY##</City>
 			<State>##SHIPSTATE##</State>
 			<PostalCode>##SHIPZIP##</PostalCode>
 		</ShipAddress>
-		<Phone>##PHONE##</Phone>
-		<Fax>##FAX##</Fax>
-		<Email>##EMAIL##</Email>
-		<Contact>##CONTACT##</Contact>
 		<TermsRef>
 			<FullName>##TERMNAME##</FullName>
 		</TermsRef>
-		<SalesTaxCodeRef>
-			<FullName>##SALESTAXCODE##</FullName>
-		</SalesTaxCodeRef>
 		<ItemSalesTaxRef>
 			<FullName>##SALESTAXNAME##</FullName>
 		</ItemSalesTaxRef>
-		<CurrencyRef>
-			<FullName>US Dollar</FullName>
-		</CurrencyRef>
-	</CustomerAdd>
-</CustomerAddRq>
+		##INVOICELINEITEMS##
+	</InvoiceAdd>
+</InvoiceAddRq>
