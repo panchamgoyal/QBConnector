@@ -7,7 +7,6 @@ import com.mixnmore.qbconnector.types.Item;
 import com.mixnmore.qbconnector.types.SalesTax;
 import com.mixnmore.qbconnector.types.Term;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,7 +26,7 @@ public class XMLBuilderService {
 		}
 		try {
 			for (Term term : terms) {
-				String xml = IOUtils.resourceToString("templates\\TermsAdd.xml", null, getClass().getClassLoader());
+				String xml = IOUtils.resourceToString("TermsAdd.xml", null, getClass().getClassLoader());
 				xml = xml.replace("##TERMNAME##", term.name == null ? "" : term.name);
 				xml = xml.replace("##ACTIVE##", term.active ? "true" : "false");
 				xml = xml.replace("##DUEDAYS##", Integer.toString(term.dueAfterDays));
@@ -48,7 +47,7 @@ public class XMLBuilderService {
 		}
 		try {
 			for (SalesTax tax : taxes) {
-				String xml = IOUtils.resourceToString("templates\\SalesTaxAdd.xml", null, getClass().getClassLoader());
+				String xml = IOUtils.resourceToString("SalesTaxAdd.xml", null, getClass().getClassLoader());
 				xml = xml.replace("##TAXNAME##", tax.name == null ? "" : tax.name);
 				xml = xml.replace("##ACTIVE##", tax.active ? "true" : "false");
 				xml = xml.replace("##TAXPERCENT##", Double.toString(tax.taxRate));
@@ -70,7 +69,7 @@ public class XMLBuilderService {
 		}
 		try {
 			for (Customer cust : customers) {
-				String xml = IOUtils.resourceToString("templates\\CustomerAdd.xml", null, getClass().getClassLoader());
+				String xml = IOUtils.resourceToString("CustomerAdd.xml", null, getClass().getClassLoader());
 				xml = xml.replace("##CUSTNAME##", (cust.firstName == null ? "" : cust.firstName) + " " + (cust.lastName == null ? "" : cust.lastName));
 				xml = xml.replace("##ACTIVE##", "true");
 				xml = xml.replace("##FIRSTNAME##", cust.firstName == null ? "" : cust.firstName);
@@ -110,9 +109,9 @@ public class XMLBuilderService {
 			return bodyXml;
 		}
 		try {
-			bodyXml = IOUtils.resourceToString("templates\\InventoryItemAdd.xml", null, getClass().getClassLoader());
+			bodyXml = IOUtils.resourceToString("InventoryItemAdd.xml", null, getClass().getClassLoader());
 			for (Item item : items) {
-				String xml = IOUtils.resourceToString("templates\\InventoryItemAdd.xml", null, getClass().getClassLoader());
+				String xml = IOUtils.resourceToString("InventoryItemAdd.xml", null, getClass().getClassLoader());
 				xml = xml.replace("##ITEMNAME##", StringUtils.isEmpty(item.name) ? (item.description == null? "": item.description) : item.name);
 				xml = xml.replace("##ACTIVE##", "true");
 				xml = xml.replace("##SALESTAXCODE##", "TAX");
@@ -136,8 +135,8 @@ public class XMLBuilderService {
 			return bodyXml;
 		}
 		try {
-			String xmlTemplateInvoice = IOUtils.resourceToString("templates\\InvoiceAdd.xml", null, getClass().getClassLoader());
-			String xmlTemplateInvoiceItem = IOUtils.resourceToString("templates\\InvoiceLineAdd.xml", null, getClass().getClassLoader());
+			String xmlTemplateInvoice = IOUtils.resourceToString("InvoiceAdd.xml", null, getClass().getClassLoader());
+			String xmlTemplateInvoiceItem = IOUtils.resourceToString("InvoiceLineAdd.xml", null, getClass().getClassLoader());
 			for (Invoice inv : invoices) {
 				String xml = new String(xmlTemplateInvoice);
 				xml = xml.replace("##CUSTNAME##", inv.customerName == null ? "" : inv.customerName);
@@ -180,7 +179,7 @@ public class XMLBuilderService {
 	
 	private String insertIntoBaseXml(String body) {
 		try {
-			String baseXml = IOUtils.resourceToString("templates\\Base.xml", null, getClass().getClassLoader());
+			String baseXml = IOUtils.resourceToString("Base.xml", null, getClass().getClassLoader());
 			baseXml = baseXml.replace("##REQUESTBODY##", body);
 			return baseXml;
 		} catch (IOException ex) {
